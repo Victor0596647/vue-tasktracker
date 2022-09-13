@@ -2,7 +2,7 @@
     <div :class="[task.reminder ? 'reminder' : '', 'task-container']" @click="toggleRemind(task.id)">
         <div>
             <h3>{{ task.text }}</h3>
-            <p>{{ task.day }}</p>
+            <p>{{ this.date }}</p>
         </div>
         <i class="bi bi-trash" @click="onDelete(task.id)"></i>
     </div>
@@ -12,7 +12,30 @@
     export default {
         name: 'Task',
         props: {
-            task: Object
+            task: Object,
+        },
+        data() {
+            return{
+                months: [],
+                date: Number
+            }
+        },
+        created() {
+            this.months = [
+                'January',
+                'February',
+                'March',
+                'April',
+                'May',
+                'June',
+                'July',
+                'August',
+                'September',
+                'October',
+                'November',
+                'December'
+            ],
+            this.date = this.months[parseInt(this.task.day.split("-", 3)[1])-1] + " " + parseInt(this.task.day.split("-", 3)[2]) + ", " + this.task.day.split("-", 3)[0]
         },
         methods: {
             onDelete(id){

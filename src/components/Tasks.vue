@@ -14,7 +14,6 @@
         },
         components: {
             Task
-        },
-        emits: ['delete-task', 'toggle-remind']
+        }
     }
 </script>

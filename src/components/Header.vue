@@ -1,25 +1,26 @@
 <template>
     <header>
         <h1>{{ title }}</h1>
-        <Button text='Add task' color='black' @click="addTask()"/>
+        <Button :text="showAddTask ? 'Close' : 'Add task'" color="black" @click="$emit('toggle-add-task')" />
     </header>
 </template>
 
 <script>
     import Button from './Button.vue' 
+    import AddTask from './AddTask.vue'
 
     export default {
         name: 'Header',
         props: {
             title: String,
+            showAddTask: Boolean
         },
         components: {
-            Button
+            Button,
+            AddTask
         },
         methods: {
-            addTask(){
-                alert("hello you clicked!")
-            }
+            
         }
     }
 </script>
